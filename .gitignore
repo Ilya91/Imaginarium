@@ -7,6 +7,7 @@ web/app/vendor/
 web/app/doc/
 web/app/report/
 data/
+doc/
 
 # PHPStorm
 .idea/
