@@ -2,14 +2,14 @@
 
 namespace AppTest\Acme;
 
-use App\Acme\RedisCache;
+use App\Acme\Foo;
 use PHPUnit\Framework\TestCase;
 
 class FooTest extends TestCase
 {
     public function testGetName()
     {
-        $foo = new RedisCache();
+        $foo = new Foo();
         $this->assertEquals($foo->getName(), 'Nginx PHP MySQL');
     }
 }
