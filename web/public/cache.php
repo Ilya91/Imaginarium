@@ -4,5 +4,11 @@ include '../app/vendor/autoload.php';
 use App\Acme\RedisCache;
 
 $cache = new RedisCache();
+$url = 'start';
+$page = $cache->read($url);
 
-var_dump($cache->read('key'));
+if (!isset($page)){
+    $page = rand(10, 1000000);
+    $cache->write($url, $page);
+    $cache->expire($url, 60);
+}

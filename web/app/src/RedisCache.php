@@ -4,6 +4,7 @@ namespace App\Acme;
 
 class RedisCache
 {
+
     private $redis;
 
     public function __construct()
@@ -29,5 +30,10 @@ class RedisCache
     {
         $this->redis->set($key, $value);
         return $value;
+    }
+
+    public function expire($key, $seconds = 120)
+    {
+        return $this->redis->expire($key, $seconds);
     }
 }
