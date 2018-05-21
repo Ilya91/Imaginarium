@@ -1,50 +1,79 @@
-
 <?php
 include '../app/vendor/autoload.php';
-$g = 'test';
-$c = function($a, $b) use($g) {
-    echo $a . $b . $g;
-};
-$g = 'test2';
-$d = 'test3';
-$c(1, 2);
-var_dump($c);
 
-(function() use($g, $d) {
-    echo $g;
-    echo $d;
-})();
-
-abstract class A
-{
-    abstract function test(string $s);
+class MyClass{
+    public $param;
+// Конструктор класса
+    function __construct($param){
+        $this->param = $param;
+        echo "Object created";
+    }
+// Перегружаем оператор clone
+    function __clone(){
+        echo "Object cloned";
+    }
 }
 
-echo '<hr/>';
+$m = new MyClass(5);
+//var_dump($m);
+$x = $m;
+$x->param = 27;
 
-$arr = ["sitepoint", "phpmaster", "buildmobile", "rubysource",
-    "designfestival", "cloudspring"];
+$y = clone $m;
+$y->param = 4;
 
-// Создаём новый итератор ArrayIterator на основе массива
-$iter = new ArrayIterator($arr);
-// Итерируем
-foreach($iter as $key => $value) {
-    echo $key . ":  " . $value . "<br>";
+var_dump($m);
+var_dump($x);
+var_dump($y);
+?>
+<hr>
+<?php
+
+class Animal {
+    function eat() {
+        echo "eat abstract<br>";
+    }
+
+    function action() {
+        $this->eat();
+    }
 }
-var_dump($iter);
-echo '<hr/>';
-// Многомерный массив
-$arr = [
-    ["sitepoint", "phpmaster"],
-    ["buildmobile", "rubysource"],
-    ["designfestival", "cloudspring"],
-    "not an array"
-];
-
-$iter = new RecursiveArrayIterator($arr);
-
-// Итерируем объект.
-// Для этого нам понадобится экземпляр RecursiveIteratorIterator
-foreach(new RecursiveIteratorIterator($iter) as $key => $value) {
-    echo $key . ": " . $value . "<br>";
+class Dog extends Animal {
+// Функция Test() для класса B
+    function eat() {
+        echo "eat meat<br>";
+    }
 }
+
+class Cat extends Animal {
+// Функция Test() для класса B
+    function eat() {
+        echo "eat fish<br>";
+    }
+}
+$a = new Animal();
+$b = new Dog();
+$c = new Cat();
+
+$a->action();
+$b->action();
+$c->action();
+
+?>
+<hr>
+<?php
+function inverse($x) {
+    if (!$x) {
+        throw new Exception('Деление на ноль.');
+    }
+    return 1/$x;
+}
+
+try {
+    echo inverse(0) . "\n";
+    //echo inverse(0) . "\n";
+} catch (Exception $e) {
+    echo 'Выброшено исключение: ',  $e->getMessage(), "\n";
+}
+
+echo 'hello';
