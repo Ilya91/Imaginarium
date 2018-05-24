@@ -69,11 +69,18 @@ function inverse($x) {
     return 1/$x;
 }
 
+function a($x){
+    return inverse($x);
+}
+function b($x){
+    return a($x);
+}
+function c($x){
+    return b($x);
+}
 try {
-    echo inverse(0) . "\n";
+    echo c(0) . "\n";
     //echo inverse(0) . "\n";
 } catch (Exception $e) {
     echo 'Выброшено исключение: ',  $e->getMessage(), "\n";
 }
-
-echo 'hello';
