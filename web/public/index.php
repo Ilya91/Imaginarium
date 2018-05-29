@@ -84,3 +84,20 @@ try {
 } catch (Exception $e) {
     echo 'Выброшено исключение: ',  $e->getMessage(), "\n";
 }
+?>
+<hr>
+<?php
+class Super{
+    public $a = 12;
+}
+$var = 12;
+function altron($obj, $var){
+    $obj->a = 22;
+    $var = 22;
+    return $var;
+}
+
+$super = new Super();
+var_dump($var);
+$var = 22;
+var_dump($var);
